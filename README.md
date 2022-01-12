@@ -26,10 +26,10 @@ This work has been tested on the popular <a href ="https://rgbd-dataset.cs.washi
 
 ## Installation
 ### System Requirements
-System requirements for each models are reported in the paper. Ideally, it would be better to have a multi-core processor, 32 GB RAM, graphics card with at least 10 GB memory, and enough disk space to store models, features, etc. depending on saving choices and initial parameters.
+System requirements for each models are reported in the supplementary material. Ideally, it would be better to have a multi-core processor, 32 GB RAM, graphics card with at least 10 GB memory, and enough disk space to store models, features, etc. depending on saving choices and initial parameters.
 
 ### Setup 
-`conda` has been used as the virtual environment manager and `pip` as package manager. It is possible to use either `pip` or `conda` (or both) for package management. Before starting, it is needed to install following libraries:
+`conda` has been used as the virtual environment manager and `pip` as the package manager. It is possible to use either `pip` or `conda` (or both) for package management. Before starting, it is needed to install following libraries:
 * PyTorch
 * Scikit-learn and OpenCV
 * psutil, h5py, seaborn, and matplotlib libs. <br/>
