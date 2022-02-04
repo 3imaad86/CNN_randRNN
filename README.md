@@ -163,9 +163,10 @@ There are two run modes. Run the demo application with the default parameters fo
 If you find this work useful in your research, please consider citing:
 ```
 @article{Caglayan2022CNNrandRNN,
-    title={When CNNs Meet Random RNNs: Towards Multi-Level Analysis for RGB-D Object and Scene Recognition},
+    title={When CNNs meet random RNNs: Towards multi-level analysis for RGB-D object and scene recognition},
     journal = {Computer Vision and Image Understanding},
     author={Ali Caglayan and Nevrez Imamoglu and Ahmet Burak Can and Ryosuke Nakamura},
+    volume = {217},
     pages = {103373},
     issn = {1077-3142},
     doi = {https://doi.org/10.1016/j.cviu.2022.103373},
