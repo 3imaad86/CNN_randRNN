@@ -35,7 +35,7 @@ class WashingtonAll(Dataset):
     def _init_dataset(self):
         data = []
         data_path = os.path.join(self.params.dataset_path, 'eval-set/')
-        results_dir = self.params.dataset_path + self.params.features_root + self.params.proceed_step + '/' + \
+        results_dir = self.params.features_root + self.params.proceed_step + '/' + \
                       self.params.net_model + '_results_' + self.params.data_type
         if not os.path.exists(results_dir):
             os.makedirs(results_dir)
@@ -133,24 +133,24 @@ class WashingtonDataset(Dataset):
             if self.params.proceed_step == RunSteps.FIX_RECURSIVE_NN:
                 # this means rnn features are already saved or wanted to be load
                 if self.params.load_features:
-                    rnn_feats_path = self.params.dataset_path + self.params.features_root + self.params.proceed_step + \
+                    rnn_feats_path = self.params.features_root + self.params.proceed_step + \
                                      '/' + self.params.net_model + '_results_' + self.params.data_type
                     path = rnn_feats_path + '/' + file + '.hdf5'
                 else:
                     # the already extracted fixed CNN features are expected in the below path
-                    cnn_feats_path = self.params.dataset_path + self.params.features_root + RunSteps.FIX_EXTRACTION + \
+                    cnn_feats_path = self.params.features_root + RunSteps.FIX_EXTRACTION + \
                                      '/' + self.params.net_model + '_results_' + self.params.data_type
                     path = cnn_feats_path + '/' + file + '.hdf5'
             elif self.params.proceed_step == RunSteps.FINE_RECURSIVE_NN:
                 # this means rnn features are already saved or wanted to be load
                 if self.params.load_features:
-                    rnn_feats_path = self.params.dataset_path + self.params.features_root + self.params.proceed_step + \
+                    rnn_feats_path = self.params.features_root + self.params.proceed_step + \
                                      '/' + self.params.net_model + '_results_' + self.params.data_type + \
                                      '/split_' + str(self.params.split_no)
                     path = rnn_feats_path + '/' + file + '.hdf5'
                 else:
                     # the already extracted finetuned CNN features are expected in the below path
-                    cnn_feats_path = self.params.dataset_path + self.params.features_root + RunSteps.FINE_TUNING + \
+                    cnn_feats_path = self.params.features_root + RunSteps.FINE_TUNING + \
                                      '/split-' + str(self.params.split_no) + '/' + self.params.net_model + \
                                      '_results_' + self.params.data_type
                     path = cnn_feats_path + '/' + file + '.hdf5'

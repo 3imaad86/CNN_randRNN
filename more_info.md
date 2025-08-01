@@ -6,9 +6,11 @@ The command line parameters with their default values for running the program:<b
 This is the root path of the dataset. <br/>
 
 ```
- --features-root "models-features" 
+ --features-root "models-features"
 ```
-This is the root folder for saving/loading models, features, weights, etc.<br/>
+This is the root folder for saving/loading models, features, weights, etc. The
+path can also be an absolute directory (e.g. `/kaggle/working/features`) to store
+outputs outside the dataset location.<br/>
 
 ```
 --data-type "crop" 

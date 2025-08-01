@@ -9,8 +9,7 @@ from overall_struct import run_overall_steps
 
 def is_suitable_rgbd_fusion(params):
     if params.proceed_step in (RunSteps.FIX_RECURSIVE_NN, RunSteps.FINE_RECURSIVE_NN, RunSteps.OVERALL_RUN):
-        confidence_scores_path = params.dataset_path + params.features_root + params.proceed_step + \
-                                 '/svm_confidence_scores/'
+        confidence_scores_path = params.features_root + params.proceed_step + '/svm_confidence_scores/'
         if not os.path.exists(confidence_scores_path):
             print('{}{}Failed to load the RGB/Depth scores! First, you need to run the system to create RGB/Depth '
                   'scores!{}'.format(PrForm.BOLD, PrForm.RED, PrForm.END_FORMAT))
@@ -99,7 +98,11 @@ def init_save_dirs(params):
     annex = ''
     if params.debug_mode:
         annex += '[debug]'
-    params.features_root += annex + '/'
+
+    if not os.path.isabs(params.features_root):
+        params.features_root = os.path.join(params.dataset_path, params.features_root)
+
+    params.features_root = os.path.abspath(params.features_root) + annex + '/'
     params.log_dir += annex + '/'
 
     return params

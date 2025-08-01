@@ -70,7 +70,7 @@ def finetuned_extraction(params):
     device = torch.device("cuda")
     logging.info('Using device "{}"'.format(device))
 
-    save_dir = params.dataset_path + params.features_root + RunSteps.FINE_TUNING + '/'
+    save_dir = params.features_root + RunSteps.FINE_TUNING + '/'
     best_model_file = save_dir + params.net_model + '_' + params.data_type + '_split_' + str(params.split_no) + \
                       '_best_checkpoint.pth'
 

@@ -105,6 +105,8 @@ CNN_randRNN
 ├── src
 ├── logs
 </pre>
+If the dataset directory is read-only you can pass an absolute path to `--features-root`
+to store models and features elsewhere.
 
 ### Washington RGB-D Object Recognition
 #### Data Preparation

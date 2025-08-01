@@ -99,7 +99,7 @@ def train_model(model, data_loaders, criterion, optimizer, scheduler, device, nu
 def process_finetuning(params):
     num_classes = len(wrgbd51.class_names)
     # uncomment saving codes after param search
-    save_dir = params.dataset_path + params.features_root + RunSteps.FINE_TUNING + '/'
+    save_dir = params.features_root + RunSteps.FINE_TUNING + '/'
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     best_model_file = save_dir + params.net_model + '_' + params.data_type + '_split_' + str(params.split_no) + \
