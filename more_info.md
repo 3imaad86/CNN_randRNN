@@ -75,7 +75,7 @@ Pooling method can be one of `max`, `avg`, and `random`.<br/>
 ```
 --load-features 0  
 ```
-If the features are already saved (with the `--save-fatures 1`), it is possible to load them without the need for run the whole pipeline again by setting this parameter to `1`.<br/>
+If the features are already saved (with the `--save-features 1`), it is possible to load them without the need for run the whole pipeline again by setting this parameter to `1`.<br/>
 
 There is one other parameter `--trial`. This is a control param for multiple runs. It could be used for multiple runs to evaluate different parameters in a controlled way. 
 
