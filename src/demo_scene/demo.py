@@ -234,7 +234,7 @@ def run_demo(params):
     device = torch.device("cuda")
     model_rnn = ResNetScene(params)
 
-    save_load_dir = params.dataset_path + params.features_root + params.proceed_step + '/svm_estimators/'
+    save_load_dir = params.features_root + params.proceed_step + '/svm_estimators/'
     svm_estimators_file = save_load_dir + params.net_model + '_' + params.data_type
 
     l5_svm_estimator_file = svm_estimators_file + '_l5.sav'
@@ -245,9 +245,9 @@ def run_demo(params):
     l6_svm_estimator = joblib.load(l6_svm_estimator_file)
     l7_svm_estimator = joblib.load(l7_svm_estimator_file)
 
-    test_img_dir = params.dataset_path + params.features_root + params.proceed_step + '/demo_images/'
+    test_img_dir = params.features_root + params.proceed_step + '/demo_images/'
 
-    save_dir = params.dataset_path + params.features_root + RunSteps.FINE_TUNING + '/'
+    save_dir = params.features_root + RunSteps.FINE_TUNING + '/'
     best_model_file = save_dir + params.net_model + '_' + params.data_type + '_best_checkpoint.pth'
 
     num_classes = len(sunrgbd.class_names)

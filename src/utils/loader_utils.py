@@ -20,7 +20,7 @@ def cnn_or_rnn_features_loader(path):
 
 def custom_loader(path, params):
     if params.data_type == DataTypes.Depth:
-        results_dir = params.dataset_path + params.features_root + RunSteps.COLORIZED_DEPTH_SAVE + '/' + \
+        results_dir = params.features_root + RunSteps.COLORIZED_DEPTH_SAVE + '/' + \
                       'all' + '_results_' + params.data_type
         if os.path.exists(results_dir):  # if colorized depth images are already saved read them
             img_path = results_dir + '/' + path.split('/')[-1] + '.hdf5'

@@ -12,7 +12,7 @@ from depth_utils import colorized_surfnorm
 def process_depth_save(params):
     suffix = '*_' + params.data_type + '.png'
     data_path = os.path.join(params.dataset_path, 'eval-set/')
-    results_dir = params.dataset_path + params.features_root + params.proceed_step + '/' + \
+    results_dir = params.features_root + params.proceed_step + '/' + \
                   params.net_model + '_results_' + params.data_type
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)

@@ -312,7 +312,7 @@ class Model:
     @basic_utils.profile
     def reduction_random_weights(self):
         if self.params.reuse_randoms:
-            save_load_dir = self.params.dataset_path + self.params.features_root + 'random_weights/'
+            save_load_dir = self.params.features_root + 'random_weights/'
             reduc_weights_file = save_load_dir + self.params.net_model + '_reduction_random_weights.pkl'
             if not os.path.exists(save_load_dir):
                 os.makedirs(save_load_dir)
@@ -346,7 +346,7 @@ class Model:
     @basic_utils.profile
     def rnn_random_weights(self):
         if self.params.reuse_randoms:
-            save_load_dir = self.params.dataset_path + self.params.features_root + 'random_weights/'
+            save_load_dir = self.params.features_root + 'random_weights/'
             rnn_weights_file = save_load_dir + self.params.net_model + '_rnn_random_weights.pkl'
             if not os.path.exists(save_load_dir):
                 os.makedirs(save_load_dir)
@@ -387,7 +387,7 @@ class Model:
 
     def save_recursive_features(self, filenames, batch_ind, phase):
 
-        save_dir = self.params.dataset_path + self.params.features_root + self.params.proceed_step + '/' + \
+        save_dir = self.params.features_root + self.params.proceed_step + '/' + \
                    self.params.net_model + '_results_' + self.params.data_type
 
         if self.params.proceed_step == RunSteps.FINE_RECURSIVE_NN:
@@ -427,7 +427,7 @@ class Model:
 
     def save_svm_conf_scores(self, l1_conf_scores, l2_conf_scores, l3_conf_scores, l4_conf_scores, l5_conf_scores,
                              l6_conf_scores, l7_conf_scores):
-        save_load_dir = self.params.dataset_path + self.params.features_root + self.params.proceed_step + \
+        save_load_dir = self.params.features_root + self.params.proceed_step + \
                         '/svm_confidence_scores/'
         confidence_scores_file = save_load_dir + self.params.net_model + '_' + self.params.data_type + '_split_' + \
                                  str(self.params.split_no) + '.hdf5'
@@ -479,7 +479,7 @@ class Model:
     def confidence_fusion(self):
         l1, l2, l3 = self.get_best_trio_layers()
 
-        save_load_dir = self.params.dataset_path + self.params.features_root + self.params.proceed_step + \
+        save_load_dir = self.params.features_root + self.params.proceed_step + \
                         '/svm_confidence_scores/'
         confidence_scores_file = save_load_dir + self.params.net_model + '_' + self.params.data_type + '_split_' + \
                                  str(self.params.split_no) + '.hdf5'
@@ -578,7 +578,7 @@ class Model:
             _, depth_best = self.get_best_modality_layers()
 
         self.params.data_type = DataTypes.RGBD
-        save_load_dir = self.params.dataset_path + self.params.features_root + self.params.proceed_step + \
+        save_load_dir = self.params.features_root + self.params.proceed_step + \
                         '/svm_confidence_scores/'
         rgb_confidence_scores_file = save_load_dir + self.params.net_model + '_' + DataTypes.RGB + '_split_' + \
                                      str(self.params.split_no) + '.hdf5'

@@ -22,8 +22,7 @@ def is_suitable_level_fusion(params):
         else:
             is_suitable = False
     else:
-        confidence_scores_path = params.dataset_path + params.features_root + params.proceed_step + \
-                                 '/svm_confidence_scores/'
+        confidence_scores_path = params.features_root + params.proceed_step + '/svm_confidence_scores/'
         if not os.path.exists(confidence_scores_path):
             print('{}{}Failed to load the RGB/Depth scores! First, you need to run the system to create RGB/Depth '
                   'scores!{}'.format(PrForm.BOLD, PrForm.RED, PrForm.END_FORMAT))
@@ -37,15 +36,15 @@ def is_suitable_level_fusion(params):
 
 def is_cnn_rnn_features_available(params, cnn):
     if params.proceed_step == RunSteps.FIX_RECURSIVE_NN:
-        cnn_feats_path = params.dataset_path + params.features_root + RunSteps.FIX_EXTRACTION + '/' + \
+        cnn_feats_path = params.features_root + RunSteps.FIX_EXTRACTION + '/' + \
                          params.net_model + '_results_' + params.data_type
-        rnn_feats_path = params.dataset_path + params.features_root + params.proceed_step + '/' + \
+        rnn_feats_path = params.features_root + params.proceed_step + '/' + \
                          params.net_model + '_results_' + params.data_type
     elif params.proceed_step == RunSteps.FINE_RECURSIVE_NN:
-        cnn_feats_path = params.dataset_path + params.features_root + RunSteps.FINE_TUNING + \
+        cnn_feats_path = params.features_root + RunSteps.FINE_TUNING + \
                          '/split-' + str(params.split_no) + '/' + params.net_model + '_results_' + \
                          params.data_type
-        rnn_feats_path = params.dataset_path + params.features_root + params.proceed_step + '/' + \
+        rnn_feats_path = params.features_root + params.proceed_step + '/' + \
                          params.net_model + '_results_' + params.data_type + '/split_' + str(params.split_no)
     else:
         return True
