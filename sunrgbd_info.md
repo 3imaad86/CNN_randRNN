@@ -12,7 +12,7 @@ This copies RGB images into `train/test` folders by renaming files with category
 sh run_steps.sh step="SAVE_SUNRGBD"
 python main_steps.py --dataset-path "../data/sunrgbd/" --data-type "Depth_Colorized_HDF5" --debug-mode 0
 ```
-This converts depth maps to the proposed colorized RGB-like representations using the provided camera intrinsic values and saves files in `train/test` folders and `hdf5` file format. See the file structure <a href="https://github.com/acaglayan/CNN_randRNN/edit/master/README.md" target="_blank">here</a> for the saved files location.
+This converts depth maps to the proposed colorized RGB-like representations using the provided camera intrinsic values and saves files in `train/test` folders and `hdf5` file format. See the file structure <a href="https://github.com/acaglayan/CNN_randRNN/blob/master/README.md" target="_blank">here</a> for the saved files location.
 <br/>
 
 Note that, data preparation works quite slowly especially for the depth data. Nevertheless, it is needed to run just once. <br/>
@@ -96,7 +96,7 @@ Pooling method can be one of `max`, `avg`, and `random`.<br/>
 ```
 --load-features 0  
 ```
-If the features are already saved (with the `--save-fatures 1`), it is possible to load them without the need for run the whole pipeline again by setting this parameter to `1`.<br/>
+If the features are already saved (with the `--save-features 1`), it is possible to load them without the need for run the whole pipeline again by setting this parameter to `1`.<br/>
 
 There is one other parameter `--trial`. This is a control param for multiple runs. It could be used for multiple runs to evaluate different parameters in a controlled way. 
 

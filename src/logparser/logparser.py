@@ -57,11 +57,11 @@ def read_file(params, log_file):
         line = fp.readline()
         while line:
             if 'Running Layer-' in line:
-                if params.mode is 'accuracy':
+                if params.mode == 'accuracy':
                     accuracy = get_accuracy(fp)
                     accuracies.append(accuracy)
             elif ('before' and 'after') in line:
-                if params.mode is not 'accuracy':
+                if params.mode != 'accuracy':
                     memory_con, exec_time = get_memory_time(line)
                     mem_cons.append(memory_con)
                     exec_times.append(exec_time)
@@ -69,7 +69,7 @@ def read_file(params, log_file):
             line = fp.readline()
 
     fp.close()
-    if params.mode is 'accuracy':
+    if params.mode == 'accuracy':
         return accuracies
     else:
         return mem_cons, exec_times
@@ -138,11 +138,11 @@ def process_one_log(params):
                    params.net + '_' + params.data_type + '_split_' + str(params.split) + '.log'
     else:
         log_file = params.log_file
-    if params.mode is 'accuracy':
+    if params.mode == 'accuracy':
         accuracies = read_file(params, log_file)
         for acc in accuracies:
             print('{}'.format(acc))
-    elif params.mode is 'mem_time':
+    elif params.mode == 'mem_time':
         mem_cons, exec_times = read_file(params, log_file)
         for i in range(len(mem_cons)):
             print('{}\t{}'.format(mem_cons[i], exec_times[i]))
@@ -157,7 +157,7 @@ def process_logs_from_dir(params):
             sorted(os.listdir(path), key=lambda x: int(x.split(params.net_model)[0][-2])),
             key=lambda x: int(x.split('split_')[1].split('.log')[0])
     ), suffix):
-        if params.mode is 'avr_mem_time':
+        if params.mode == 'avr_mem_time':
             if params.split == int(logfile.split('split_')[1].split('.log')[0]):
                 mem_cons, exec_times = read_file(params, os.path.join(path, logfile))
                 list_mem_cons.append(mem_cons)
@@ -167,7 +167,7 @@ def process_logs_from_dir(params):
             print('Processing file {}'.format(logfile))
             process_one_log(params)
 
-    if params.mode is 'avr_mem_time':
+    if params.mode == 'avr_mem_time':
         print('average memory and time stats for {} split-{} {} images'.format(params.net_model, params.split, suffix))
         num_file = len(list_mem_cons)
         file_record_len = len(list_mem_cons[0])

@@ -49,3 +49,16 @@ def test_randomized_pool_values():
     out = model_utils.randomized_pool(weights, data, num_split=2)
     expected = np.array([[[[1 + 3]], [[2 + 4]]]], dtype=np.float32)
     assert np.allclose(out, expected)
+
+def test_flat_2d():
+    data = np.arange(16, dtype=np.float32).reshape(2, 2, 2, 2)
+    out = model_utils.flat_2d(data)
+    assert out.shape == (2, 8)
+    assert np.allclose(out[0], np.arange(8))
+
+def test_reshape_4d():
+    data = np.arange(16, dtype=np.float32).reshape(1, 16)
+    out = model_utils.reshape_4d(data, (4, 2, 2))
+    expected = data.reshape(1, 4, 2, 2)
+    assert out.shape == expected.shape
+    assert np.allclose(out, expected)
