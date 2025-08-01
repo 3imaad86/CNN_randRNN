@@ -15,7 +15,7 @@ def classify(train_data, train_labels, test_data):
     # Select the algorithm to either solve the dual or primal optimization problem.
     # Prefer dual=False when n_samples > n_features.
     # max_iter=5000, loss='hinge'
-    clf = svm.LinearSVC(max_iter=5000)
+    clf = svm.LinearSVC(max_iter=10000)
     clf.fit(train_data, train_labels)
 
     preds = clf.predict(test_data)
