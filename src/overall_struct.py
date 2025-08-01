@@ -77,12 +77,13 @@ def process_classification_stage(model_rnn, run_mode):
     else:
         model_rnn.params.proceed_step = RunSteps.FINE_RECURSIVE_NN
 
+    # switch to OVERALL_RUN for saving the scores and fusion
+    model_rnn.params.proceed_step = RunSteps.OVERALL_RUN
     model_rnn.save_svm_conf_scores(l1_conf_scores, l2_conf_scores, l3_conf_scores, l4_conf_scores, l5_conf_scores,
                                    l6_conf_scores, l7_conf_scores)
 
     model_rnn.fusion_layers()
     logging.info('----------\n')
-    model_rnn.params.proceed_step = RunSteps.OVERALL_RUN
 
 
 def process_fusion(model_rnn, params):
