@@ -77,7 +77,9 @@ Pooling method can be one of `max`, `avg`, and `random`.<br/>
 ```
 If the features are already saved (with the `--save-features 1`), it is possible to load them without the need for run the whole pipeline again by setting this parameter to `1`.<br/>
 
-There is one other parameter `--trial`. This is a control param for multiple runs. It could be used for multiple runs to evaluate different parameters in a controlled way. 
+There is one other parameter `--trial`. This is a control param for multiple runs. It could be used for multiple runs to evaluate different parameters in a controlled way.
+
+Another parameter `--svm-max-iter` sets the maximum iteration count for the linear SVM classifier (default `5000`).
 
 
 #### Run Individual Steps

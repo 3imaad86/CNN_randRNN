@@ -202,6 +202,8 @@ def get_recursive_params(proceed_step):
     parser.add_argument("--load-features", dest="load_features", default=0, type=int, choices=[0, 1])
     parser.add_argument("--pooling", dest="pooling", default=Pools.RANDOM, choices=Pools.ALL,
                         type=str.lower, help="Pooling type")
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=5000, type=int,
+                        help="Maximum iterations for linear SVM")
     params = parser.parse_args()
     params.proceed_step = proceed_step
     return params

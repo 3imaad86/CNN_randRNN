@@ -9,13 +9,26 @@ import torch
 from sklearn import svm
 
 
-def classify(train_data, train_labels, test_data):
+def classify(train_data, train_labels, test_data, max_iter=5000):
+    """Train a linear SVM and classify test data.
+
+    Parameters
+    ----------
+    train_data : array-like
+        Training features.
+    train_labels : array-like
+        Labels corresponding to ``train_data``.
+    test_data : array-like
+        Test features to classify.
+    max_iter : int, optional
+        Maximum number of iterations for ``LinearSVC`` solver.
+    """
+
     # LinearSVC parameters
     # dual : bool, (default=True)
     # Select the algorithm to either solve the dual or primal optimization problem.
     # Prefer dual=False when n_samples > n_features.
-    # max_iter=5000, loss='hinge'
-    clf = svm.LinearSVC(max_iter=5000)
+    clf = svm.LinearSVC(max_iter=max_iter)
     clf.fit(train_data, train_labels)
 
     preds = clf.predict(test_data)
