@@ -1,4 +1,5 @@
 import os
+import importlib
 
 from basic_utils import RunSteps, PrForm, DataTypes, Models, Pools, DataTypesSUNRGBD
 from alexnet_model import AlexNet
@@ -29,7 +30,32 @@ def is_suitable_level_fusion(params):
             print('{}{}Or set --fusion-levels param to 0!{}'.format(PrForm.BOLD, PrForm.RED, PrForm.END_FORMAT))
             is_suitable = False
         else:
-            pass  # TODO
+            score_file = os.path.join(
+                confidence_scores_path,
+                f"{params.net_model}_{params.data_type}_split_{params.split_no}.hdf5"
+            )
+
+            if not os.path.isfile(score_file):
+                print('{}{}Failed to find the RGB/Depth score file: {}{}'.format(
+                    PrForm.BOLD, PrForm.RED, score_file, PrForm.END_FORMAT))
+                print('{}{}Or set --fusion-levels param to 0!{}'.format(
+                    PrForm.BOLD, PrForm.RED, PrForm.END_FORMAT))
+                is_suitable = False
+            else:
+                try:
+                    h5py_spec = importlib.util.find_spec('h5py')
+                    if h5py_spec is None:
+                        raise ImportError('h5py library is not installed')
+                    h5py = importlib.import_module('h5py')
+                    with h5py.File(score_file, 'r') as f:
+                        if len(f.keys()) == 0:
+                            raise ValueError('empty score file')
+                except Exception as e:
+                    print('{}{}RGB/Depth score file is unusable: {}{}'.format(
+                        PrForm.BOLD, PrForm.RED, e, PrForm.END_FORMAT))
+                    print('{}{}Please recreate the file or set --fusion-levels param to 0!{}'.format(
+                        PrForm.BOLD, PrForm.RED, PrForm.END_FORMAT))
+                    is_suitable = False
 
     return is_suitable
 
