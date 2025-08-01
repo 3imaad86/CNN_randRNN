@@ -1,8 +1,20 @@
 import numpy as np
-from torchvision import transforms
+try:
+    from torchvision import transforms
+except Exception:  # noqa: BLE001
+    transforms = None
 
-import depth_transform
-from basic_utils import DataTypes
+try:
+    import depth_transform
+except Exception:  # noqa: BLE001
+    depth_transform = None
+try:
+    from basic_utils import DataTypes
+except Exception:  # noqa: BLE001
+    class DataTypes:
+        RGB = 'crop'
+        Depth = 'depthcrop'
+        RGBD = 'rgbd'
 
 
 def init_random_weights(num_split, chunk_size, rfs, opt):
@@ -42,9 +54,9 @@ def avg_pool(layer_inp, num_split):
     chunk_size = int(num_maps / num_split)
 
     layer_inp = np.reshape(layer_inp,
-                           (layer_inp.shape[0], num_split, chunk_size, layer_inp.shape[2], layer_inp.shape[3]))
+                           (layer_inp.shape[0], chunk_size, num_split, layer_inp.shape[2], layer_inp.shape[3]))
 
-    out = np.mean(layer_inp, axis=1)
+    out = np.mean(layer_inp, axis=2)
 
     return out
 
@@ -56,14 +68,20 @@ def max_pool(layer_inp, num_split):
     chunk_size = int(num_maps / num_split)
 
     layer_inp = np.reshape(layer_inp,
-                           (layer_inp.shape[0], num_split, chunk_size, layer_inp.shape[2], layer_inp.shape[3]))
+                           (layer_inp.shape[0], chunk_size, num_split, layer_inp.shape[2], layer_inp.shape[3]))
 
-    out = np.max(layer_inp, axis=1)
+    out = np.max(layer_inp, axis=2)
 
     return out
 
 
 def get_data_transform(data_type):
+    if data_type == DataTypes.RGB:
+        if transforms is None:
+            raise ImportError('torchvision is required for RGB transforms')
+    else:
+        if depth_transform is None:
+            raise ImportError('cv2 is required for depth transforms')
     std = [0.229, 0.224, 0.225]
 
     if data_type == DataTypes.RGB:
