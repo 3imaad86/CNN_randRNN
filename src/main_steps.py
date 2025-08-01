@@ -171,6 +171,8 @@ def extract_finetuned_features():
 
 def get_save_depth_params():
     parser = get_initial_parser()
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=10000, type=int,
+                        help="Max iterations for LinearSVC")
     params = parser.parse_args()
     params.net_model = 'all'
     params.proceed_step = RunSteps.COLORIZED_DEPTH_SAVE
@@ -181,6 +183,8 @@ def get_save_depth_params():
 def get_extraction_params():
     parser = get_initial_parser()
     parser.add_argument("--batch-size", dest="batch_size", default=64, type=int)
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=10000, type=int,
+                        help="Max iterations for LinearSVC")
     params = parser.parse_args()
     params.proceed_step = RunSteps.FIX_EXTRACTION
     return params
@@ -202,6 +206,8 @@ def get_recursive_params(proceed_step):
     parser.add_argument("--load-features", dest="load_features", default=0, type=int, choices=[0, 1])
     parser.add_argument("--pooling", dest="pooling", default=Pools.RANDOM, choices=Pools.ALL,
                         type=str.lower, help="Pooling type")
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=10000, type=int,
+                        help="Max iterations for LinearSVC")
     params = parser.parse_args()
     params.proceed_step = proceed_step
     return params
@@ -220,6 +226,8 @@ def get_finetune_params():
     parser.add_argument("--trial", dest="trial", default=0, type=int,
                         help="Trial number is used to run the same model with the same params to evaluate "
                              "the effect of randomness.")
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=10000, type=int,
+                        help="Max iterations for LinearSVC")
     params = parser.parse_args()
     params.proceed_step = RunSteps.FINE_TUNING
     return params
@@ -229,6 +237,8 @@ def get_finetuned_extraction_params():
     parser = get_initial_parser()
     parser.add_argument("--batch-size", dest="batch_size", default=64, type=int)
     parser.add_argument("--split-no", dest="split_no", default=1, type=int, choices=range(1, 11), help="Split number")
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=10000, type=int,
+                        help="Max iterations for LinearSVC")
     params = parser.parse_args()
     params.proceed_step = RunSteps.FINE_EXTRACTION
     return params

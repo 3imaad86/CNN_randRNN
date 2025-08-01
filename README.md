@@ -131,6 +131,8 @@ To run the overall pipeline with the default parameter values:
 python main.py
 ```
 This will train/test SVM for every 7 layers. You may want to make levels other than that of optimum ones to the comment lines.
+The number of iterations used by the underlying Linear SVM solver can be changed via
+the `--svm-max-iter` option (default `10000`).
 It is also possible to run the system step by step. See the details <a href="https://github.com/acaglayan/CNN_randRNN/blob/master/more_info.md"> here</a>.
 
 ### SUN RGB-D Scene Recognition
