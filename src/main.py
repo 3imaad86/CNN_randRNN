@@ -122,6 +122,8 @@ def get_overall_run_params():
                         type=str.lower, help="Pooling type")
     parser.add_argument("--load-features", dest="load_features", default=0, type=int, choices=[0])
     parser.add_argument("--trial", dest="trial", default=0, type=int, help="For multiple runs")
+    parser.add_argument("--svm-max-iter", dest="svm_max_iter", default=10000, type=int,
+                        help="Max iterations for LinearSVC")
     params = parser.parse_args()
     params.proceed_step = RunSteps.OVERALL_RUN
     return params

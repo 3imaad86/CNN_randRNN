@@ -151,7 +151,9 @@ class Model:
             layer_train = model_utils.flat_2d(layer_train)
             layer_test = model_utils.flat_2d(layer_test)
         logging.info('CNN feature dimension {}'.format(layer_train.shape[1]))
-        preds, confidence_scores = basic_utils.classify(layer_train, self.train_labels, layer_test)
+        preds, confidence_scores = basic_utils.classify(
+            layer_train, self.train_labels, layer_test,
+            max_iter=self.params.svm_max_iter)
 
         avg_res_cnn, true_preds_cnn, test_size_cnn = self.calc_scores(preds)
 
@@ -159,7 +161,9 @@ class Model:
 
     def classify_rnn_features(self, layer_train, layer_test):
         logging.info('RNN feature dimension {}'.format(layer_train.shape[1]))
-        preds, confidence_scores = basic_utils.classify(layer_train, self.train_labels, layer_test)
+        preds, confidence_scores = basic_utils.classify(
+            layer_train, self.train_labels, layer_test,
+            max_iter=self.params.svm_max_iter)
 
         avg_res_rnn, true_preds_rnn, test_size_rnn = self.calc_scores(preds)
 
